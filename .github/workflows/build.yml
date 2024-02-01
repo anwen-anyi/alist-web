@@ -48,9 +48,7 @@ jobs:
         run: |
           cd alist-web
           pnpm install
-          wget https://crowdin.com/backend/download/project/alist/zh-CN.zip 
-          unzip zh-CN.zip 
-          node ./scripts/i18n.mjs
+          pnpm i18n:build
           pnpm build
           cd ..
         env:
