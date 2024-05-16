@@ -372,7 +372,9 @@ const Preview = () => {
       option.quality = quality
       player.quality = quality
       curSeek = player.currentTime
+      let curPlaying = player.playing
       await player.switchUrl(quality[quality.length - 1].url)
+      if (!curPlaying) player.pause()
       setTimeout(() => {
         player.seek = curSeek
       }, 1000)
@@ -386,7 +388,7 @@ const Preview = () => {
   const [warnVisible, setWarnVisible] = createSignal(false)
   return (
     <VideoBox onAutoNextChange={setAutoNext}>
-      <Box w="$full" id="video-player" />
+      <Box w="$full" h="60vh" id="video-player" />
       <Show when={warnVisible()}>
         <Center w="100%" h="60vh" bgColor="black">
           <TiWarning size="4rem" />
